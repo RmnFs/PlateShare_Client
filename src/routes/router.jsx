@@ -9,52 +9,45 @@ import AddFood from "../pages/AddFood";
 import PrivateRoute from "./PrivateRoute";
 import ManageMyFoods from "../pages/ManageMyFoods";
 import MyRequests from "../pages/MyRequests";
+import ErrorPage from "../pages/ErrorPage";
 
 const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <MainLayout />,
-        children: [
-            { index: true, element: <Home /> },
-            { path: "available-foods", element: <AvailableFoods /> },
-            { path: "food/:id", element: <FoodDetails /> },
-            { path: "register", element: <Register /> },
-            { path: "login", element: <Login /> },
-            {
-                path: "my-requests",
-                element: (
-                    <PrivateRoute>
-                        <MyRequests />
-                    </PrivateRoute>
-                ),
-            },
-
-            {
-                path: "manage-my-foods",
-                element: (
-                    <PrivateRoute>
-                        <ManageMyFoods />
-                    </PrivateRoute>
-                ),
-            },
-            {
-                path: "add-food",
-                element: (
-                    <PrivateRoute>
-                        <AddFood />
-                    </PrivateRoute>
-                ),
-            },
-        ],
-    },
-    {
-        path: "*",
+  {
+    path: "/",
+    element: <MainLayout />,
+    errorElement: <ErrorPage />,
+    children: [
+      { index: true, element: <Home /> },
+      { path: "available-foods", element: <AvailableFoods /> },
+      { path: "food/:id", element: <FoodDetails /> },
+      { path: "register", element: <Register /> },
+      { path: "login", element: <Login /> },
+      {
+        path: "my-requests",
         element: (
-            <h2 className="text-center text-3xl mt-20 text-error">
-                404 - Page Not Found
-            </h2>
+          <PrivateRoute>
+            <MyRequests />
+          </PrivateRoute>
         ),
-    },
+      },
+      {
+        path: "manage-my-foods",
+        element: (
+          <PrivateRoute>
+            <ManageMyFoods />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "add-food",
+        element: (
+          <PrivateRoute>
+            <AddFood />
+          </PrivateRoute>
+        ),
+      },
+    ],
+  },
 ]);
 
 export default router;
