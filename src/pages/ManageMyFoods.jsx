@@ -14,7 +14,7 @@ const ManageMyFoods = () => {
   const fetchMyFoods = async () => {
     try {
       const res = await fetch(
-        `http://localhost:3000/api/foods/my/${user.email}`
+        `${import.meta.env.VITE_API_URL}/api/foods/my/${user.email}`
       );
       const data = await res.json();
       setFoods(data);
@@ -40,7 +40,7 @@ const ManageMyFoods = () => {
 
     if (result.isConfirmed) {
       try {
-        const res = await fetch(`http://localhost:3000/api/foods/${id}`, {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/foods/${id}`, {
           method: "DELETE",
         });
         const data = await res.json();
@@ -71,7 +71,7 @@ const ManageMyFoods = () => {
 
     try {
       const res = await fetch(
-        `http://localhost:3000/api/foods/${selectedFood._id}`,
+        `${import.meta.env.VITE_API_URL}/api/foods/${selectedFood._id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },

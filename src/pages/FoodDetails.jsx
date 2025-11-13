@@ -19,7 +19,8 @@ const FoodDetails = () => {
   useEffect(() => {
     const fetchFood = async () => {
       try {
-        const res = await fetch(`http://localhost:3000/api/foods/${id}`);
+        //const res = await fetch(`http://localhost:3000/api/foods/${id}`);
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/foods/${id}`);
         const data = await res.json();
         setFood(data);
       } catch (error) {
@@ -35,7 +36,9 @@ const FoodDetails = () => {
   const fetchRequests = async () => {
     if (!isOwner) return;
     try {
-      const res = await fetch(`http://localhost:3000/api/requests/food/${id}`);
+      //const res = await fetch(`http://localhost:3000/api/requests/food/${id}`);
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/requests/food/${id}`);
+
       const data = await res.json();
       setRequests(data);
     } catch (err) {
@@ -49,7 +52,7 @@ const FoodDetails = () => {
 
   const handleStatus = async (reqId, newStatus) => {
     try {
-      const res = await fetch(`http://localhost:3000/api/requests/${reqId}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/requests/${reqId}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ status: newStatus }),
@@ -60,8 +63,9 @@ const FoodDetails = () => {
         toast.success(`Request ${newStatus}`);
         fetchRequests(); // reload list
         if (newStatus === "accepted") {
-          // also reload food to update donated status
-          const foodRes = await fetch(`http://localhost:3000/api/foods/${id}`);
+          //  reload food to update donated status
+          //const foodRes = await fetch(`http://localhost:3000/api/foods/${id}`);
+          const foodRes = await fetch(`${import.meta.env.VITE_API_URL}/api/foods/${id}`);
           setFood(await foodRes.json());
         }
       } else {

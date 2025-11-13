@@ -12,14 +12,14 @@ const MyRequests = () => {
   const fetchRequests = async () => {
     try {
       const res = await fetch(
-        `http://localhost:3000/api/requests/user/${user.email}`
+        `${import.meta.env.VITE_API_URL}/api/requests/user/${user.email}`
       );
       const data = await res.json();
       setRequests(data);
 
       // Fetch related food names concurrently
       const foodPromises = data.map((r) =>
-        fetch(`http://localhost:3000/api/foods/${r.foodId}`).then((res) =>
+        fetch(`${import.meta.env.VITE_API_URL}/api/foods/${r.foodId}`).then((res) =>
           res.json()
         )
       );

@@ -10,7 +10,8 @@ const FeaturedFoods = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("http://localhost:3000/api/foods/featured/list");
+        //const res = await fetch("http://localhost:3000/api/foods/featured/list");
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/foods/featured/list`);
         const data = await res.json();
         setFoods(data);
       } catch (error) {

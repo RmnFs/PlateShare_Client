@@ -15,7 +15,8 @@ const Register = () => {
 
     const form = e.target;
     const name = form.name.value;
-    const photoURL = form.photo.value;
+    const photoURL =
+      form.photo.value || "https://i.ibb.co/D6DKrJ3/userDP.png";
     const email = form.email.value;
     const password = form.password.value;
 
@@ -76,9 +77,8 @@ const Register = () => {
             <input
               type="text"
               name="photo"
-              placeholder="Profile Picture URL"
+              placeholder="Profile Picture URL (optional)"
               className="input input-bordered"
-              required
             />
           </label>
 
@@ -106,7 +106,7 @@ const Register = () => {
 
           {error && <p className="text-error text-sm mb-3">{error}</p>}
 
-          <button type="submit" className="btn btn-primary w-full">
+          <button type="submit" className="btn btn-primary w-full mt-2">
             Register
           </button>
         </form>

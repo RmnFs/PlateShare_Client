@@ -47,7 +47,7 @@ const AddFood = () => {
         donator_image: user.photoURL,
       };
 
-      const res = await fetch("http://localhost:3000/api/foods", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/foods`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(foodData),
