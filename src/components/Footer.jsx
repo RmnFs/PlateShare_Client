@@ -8,7 +8,7 @@ const Footer = () => {
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between px-6 py-6">
         {/* Left: Logo & Name */}
         <div className="flex items-center gap-2 mb-4 md:mb-0">
-          <span className="text-2xl font-bold text-primary">PlateShare</span>
+          <span className="text-2xl font-bold text-accent">PlateShare</span>
         </div>
 
         {/* Right: Social Media Icons */}
@@ -42,7 +42,7 @@ const Footer = () => {
 
       {/* Bottom row: copyright */}
       <div className="bg-base-300 py-3 text-center text-sm text-gray-600">
-        © {new Date().getFullYear()} PlateShare — Sharing made simple.
+        © {new Date().getFullYear()} <span className="text-accent">PlateShare</span> — Sharing made simple.
       </div>
     </footer>
   );

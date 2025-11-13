@@ -11,9 +11,9 @@ const RequestModal = ({ food, onClose }) => {
     setSubmitting(true);
 
     const form = e.target;
-    const location = form.location.value;
-    const reason = form.reason.value;
-    const contactNo = form.contactNo.value;
+    const location = form.location.value.trim();
+    const reason = form.reason.value.trim();
+    const contactNo = form.contactNo.value.trim();
 
     const requestData = {
       foodId: food._id,
@@ -50,43 +50,68 @@ const RequestModal = ({ food, onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 flex justify-center items-center bg-black/40 z-50">
-      <div className="bg-base-100 p-6 rounded-lg w-full max-w-md shadow-lg">
-        <h3 className="text-xl font-semibold mb-4">
-          Request Food: {food.food_name}
-        </h3>
+    <div className="fixed inset-0 flex justify-center items-center bg-black/40 z-50 p-4">
+      <div className="bg-base-100 rounded-xl shadow-xl w-full max-w-md">
+        {/* Header */}
+        <div className="border-b border-base-300 px-6 py-4 flex justify-between items-center">
+          <h3 className="text-lg font-semibold text-primary">
+            Request Food:{" "}
+            <span className="text-neutral">{food.food_name}</span>
+          </h3>
+          <button
+            className="btn btn-sm btn-ghost text-lg"
+            onClick={onClose}
+            title="Close"
+          >
+            ✕
+          </button>
+        </div>
 
-        <form onSubmit={handleSubmit}>
-          <label className="form-control mb-3">
-            <span className="label-text">Your Location</span>
+        {/* Form */}
+        <form onSubmit={handleSubmit} className="px-6 py-5 space-y-5">
+          {/* Location */}
+          <div>
+            <label className="block text-sm font-medium mb-2 text-gray-600">
+              Your Location
+            </label>
             <input
               name="location"
               type="text"
-              className="input input-bordered"
+              placeholder="e.g., Shundarban, Boro Bot Gacher niche"
+              className="input input-bordered w-full"
               required
             />
-          </label>
+          </div>
 
-          <label className="form-control mb-3">
-            <span className="label-text">Why do you need this food?</span>
+          {/* Reason */}
+          <div>
+            <label className="block text-sm font-medium mb-2 text-gray-600">
+              Why do you need this food?
+            </label>
             <textarea
               name="reason"
-              className="textarea textarea-bordered"
+              placeholder="Share a short reason..."
+              className="textarea textarea-bordered w-full min-h-[100px]"
               required
             ></textarea>
-          </label>
+          </div>
 
-          <label className="form-control mb-4">
-            <span className="label-text">Contact Number</span>
+          {/* Contact */}
+          <div>
+            <label className="block text-sm font-medium mb-2 text-gray-600">
+              Contact Number
+            </label>
             <input
               name="contactNo"
               type="text"
-              className="input input-bordered"
+              placeholder="e.g., +880 123 456 7890"
+              className="input input-bordered w-full"
               required
             />
-          </label>
+          </div>
 
-          <div className="flex justify-end gap-3">
+          {/* Buttons */}
+          <div className="flex justify-end gap-3 pt-2">
             <button
               type="button"
               className="btn btn-outline"
@@ -96,7 +121,7 @@ const RequestModal = ({ food, onClose }) => {
             </button>
             <button
               type="submit"
-              className="btn btn-primary"
+              className={`btn btn-primary ${submitting ? "loading" : ""}`}
               disabled={submitting}
             >
               {submitting ? "Submitting..." : "Submit Request"}

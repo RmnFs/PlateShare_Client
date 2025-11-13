@@ -19,7 +19,7 @@ const Navbar = () => {
     <div className="navbar bg-base-100 shadow-sm">
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo */}
-        <Link to="/" className="text-2xl font-bold text-primary">
+        <Link to="/" className="text-2xl font-bold text-accent">
           PlateShare
         </Link>
 
