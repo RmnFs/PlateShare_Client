@@ -1,14 +1,10 @@
 import { Link } from "react-router";
-
 import Lottie from "lottie-react";
-
 import heroFood from "../assets/animations/heroFood.json";
-
 import donateAnim from "../assets/animations/donate.json";
-
 import FeaturedFoods from "../components/FeaturedFoods";
-
 import StaticSections from "../components/StaticSections";
+import ExpiringSoon from "../components/ExpiringSoon";
 
 const Home = () => {
 
@@ -71,12 +67,14 @@ return (
       <section className="bg-base-100" data-aos="fade-up">
         <FeaturedFoods />
       </section>
+      
 {/* ---------- STATIC SECTIONS ---------- */}
 
 
       <section className="bg-base-100" data-aos="fade-up">
         <StaticSections />
       </section>
+      <ExpiringSoon />
     </>
 
 );

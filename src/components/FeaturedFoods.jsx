@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import FoodCard from "./FoodCard";
 import Loader from "./Loader";
+import { Link } from "react-router";
 
 const FeaturedFoods = () => {
   const [foods, setFoods] = useState([]);
@@ -41,7 +42,9 @@ const FeaturedFoods = () => {
       )}
 
       <div className="text-center mt-10">
-        <button className="btn btn-outline btn-primary">Show All</button>
+        <Link to="/available-foods" className="btn btn-outline btn-primary">
+          Show All
+        </Link>
       </div>
     </section>
   );
