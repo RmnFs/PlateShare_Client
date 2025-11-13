@@ -1,5 +1,6 @@
 import Lottie from "lottie-react";
 import howItWorksAnim from "../assets/animations/HowItWorks.json";
+import missionAnim from "../assets/animations/Mission.json";
 
 const StaticSections = () => {
   return (
@@ -86,13 +87,25 @@ const StaticSections = () => {
         className="text-center py-20 bg-base-100 max-w-5xl mx-auto"
         data-aos="fade-up"
       >
-        <h2 className="text-4xl font-extrabold text-primary mb-4">
-          Our Mission 🌍
-        </h2>
+        {/* Title + Animation */}
+        <h2 className="text-4xl font-extrabold text-primary mt-4">
+            Our
+          </h2>
+        <div className="flex flex-col items-center justify-center mb-8">
+          <Lottie
+            animationData={missionAnim}
+            loop
+            className="w-44 sm:w-56 md:w-64"
+            data-aos="zoom-in"
+          />
+          
+        </div>
+
+        {/* Text */}
         <p className="text-gray-600 max-w-2xl mx-auto text-lg leading-relaxed px-4">
           Our goal is to reduce food waste and strengthen community bonds.
-          Together we can create a sustainable world where every plate serves a
-          purpose and none go empty.
+          Together, we can create a sustainable world where every plate serves
+          a purpose and none go empty.
         </p>
       </section>
     </>
