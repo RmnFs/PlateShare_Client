@@ -5,8 +5,10 @@ import Loader from "../components/Loader";
 const MyRequests = () => {
   const { user } = useContext(AuthContext);
   const [requests, setRequests] = useState([]);
+  const [foodsMap, setFoodsMap] = useState({});
   const [loading, setLoading] = useState(true);
 
+  // Fetch all my requests
   const fetchRequests = async () => {
     try {
       const res = await fetch(
@@ -14,6 +16,21 @@ const MyRequests = () => {
       );
       const data = await res.json();
       setRequests(data);
+
+      // Fetch related food names concurrently
+      const foodPromises = data.map((r) =>
+        fetch(`http://localhost:3000/api/foods/${r.foodId}`).then((res) =>
+          res.json()
+        )
+      );
+      const foodResults = await Promise.all(foodPromises);
+
+      // Build a mapping object: { foodId: food_name }
+      const map = {};
+      foodResults.forEach((f) => {
+        if (f && f._id) map[f._id] = f.food_name;
+      });
+      setFoodsMap(map);
     } catch (err) {
       console.error("Error fetching user requests:", err);
     } finally {
@@ -45,8 +62,7 @@ const MyRequests = () => {
           <thead>
             <tr>
               <th>Food Name</th>
-              <th>Food ID</th>
-              <th>My Location</th>
+              <th>Pickup Location</th>
               <th>Reason</th>
               <th>Contact</th>
               <th>Status</th>
@@ -55,8 +71,7 @@ const MyRequests = () => {
           <tbody>
             {requests.map((r) => (
               <tr key={r._id}>
-                <td className="font-medium">{r.foodName || "—"}</td>
-                {/* <td className="text-sm text-gray-500">{r.foodId}</td> */}
+                <td>{foodsMap[r.foodId] || "Loading..."}</td>
                 <td>{r.location}</td>
                 <td>{r.reason}</td>
                 <td>{r.contactNo}</td>
