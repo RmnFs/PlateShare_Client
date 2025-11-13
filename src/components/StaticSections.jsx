@@ -1,41 +1,98 @@
+import Lottie from "lottie-react";
+import howItWorksAnim from "../assets/animations/HowItWorks.json";
+
 const StaticSections = () => {
   return (
     <>
-      {/* How It Works Section */}
-      <section className="my-20 bg-base-200 py-14 rounded-lg">
-        <div className="text-center mb-10">
-          <h2 className="text-3xl font-bold text-primary mb-3">
+      {/* ---------- HOW IT WORKS ---------- */}
+      <section
+        className="bg-base-200 py-20 rounded-lg overflow-hidden mt-0"
+        data-aos="fade-up"
+      >
+        {/* TOP: Title + Lottie */}
+        <div className="text-center flex flex-col items-center gap-6 mb-16 px-4">
+          <h2 className="text-4xl font-extrabold text-primary">
             How It Works 🍴
           </h2>
-          <p className="text-gray-600">
-            Sharing food is as easy as 1-2-3 with PlateShare.
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            Sharing food is simple — follow these three easy steps to make a
+            difference in your community.
           </p>
+
+          {/* Animation centered and responsive */}
+          <div
+            data-aos="zoom-in"
+            data-aos-delay="100"
+            className="flex justify-center w-full"
+          >
+            <Lottie
+              animationData={howItWorksAnim}
+              loop
+              className="w-64 sm:w-80 md:w-96"
+            />
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 max-w-5xl mx-auto">
-          <div className="p-6 bg-base-100 rounded-lg shadow">
-            <h3 className="font-bold text-lg mb-2">1️⃣ Post Food</h3>
-            <p>Add surplus food details and make them available to the community.</p>
+        {/* BOTTOM: 3 Steps */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto px-6">
+          {/* Step 1 */}
+          <div
+            className="p-6 bg-base-100 rounded-xl shadow hover:shadow-xl transition-all duration-200 border-t-4 border-primary text-center flex flex-col justify-between"
+            data-aos="fade-up"
+          >
+            <h3 className="font-bold text-xl mb-3 text-primary">
+              1️⃣ Post Food
+            </h3>
+            <p className="text-gray-600 text-sm leading-relaxed">
+              Add your surplus meal details — name, portion size, and pickup
+              location — and make it available to others.
+            </p>
           </div>
 
-          <div className="p-6 bg-base-100 rounded-lg shadow">
-            <h3 className="font-bold text-lg mb-2">2️⃣ Find Food</h3>
-            <p>Browse listings near you and request anything you need.</p>
+          {/* Step 2 */}
+          <div
+            className="p-6 bg-base-100 rounded-xl shadow hover:shadow-xl transition-all duration-200 border-t-4 border-success text-center flex flex-col justify-between"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <h3 className="font-bold text-xl mb-3 text-success">
+              2️⃣ Find Food
+            </h3>
+            <p className="text-gray-600 text-sm leading-relaxed">
+              Browse shared meals near you, view full details, and request what
+              fits your needs. It’s that easy!
+            </p>
           </div>
 
-          <div className="p-6 bg-base-100 rounded-lg shadow">
-            <h3 className="font-bold text-lg mb-2">3️⃣ Collect Food</h3>
-            <p>Coordinate pickup with the donor and reduce food waste together.</p>
+          {/* Step 3 */}
+          <div
+            className="p-6 bg-base-100 rounded-xl shadow hover:shadow-xl transition-all duration-200 border-t-4 border-accent text-center flex flex-col justify-between"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <h3 className="font-bold text-xl mb-3 text-accent">
+              3️⃣ Collect Food
+            </h3>
+            <p className="text-gray-600 text-sm leading-relaxed">
+              Coordinate pickup with the donor, collect your meal, and share the
+              joy of reducing food waste together!
+            </p>
           </div>
         </div>
       </section>
 
-      {/* Our Mission Section */}
-      <section className="my-20 text-center py-16">
-        <h2 className="text-3xl font-bold text-primary mb-4">Our Mission 🌍</h2>
-        <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-          Our goal is simple — to reduce food waste and help communities connect. 
-          Together, we can create a sustainable world where no plate goes empty.
+      {/* ---------- OUR MISSION ---------- */}
+      <section
+        className="text-center py-20 bg-base-100 max-w-5xl mx-auto"
+        data-aos="fade-up"
+      >
+        <h2 className="text-4xl font-extrabold text-primary mb-4">
+          Our Mission 🌍
+        </h2>
+        <p className="text-gray-600 max-w-2xl mx-auto text-lg leading-relaxed px-4">
+          Our goal is to reduce food waste and strengthen community bonds.
+          Together we can create a sustainable world where every plate serves a
+          purpose and none go empty.
         </p>
       </section>
     </>
