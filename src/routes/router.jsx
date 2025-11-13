@@ -1,17 +1,23 @@
 import { createBrowserRouter } from "react-router";
+import MainLayout from "../layouts/MainLayout";
+import Home from "../pages/Home";
 
-// simple placeholder layout + page
-const MainLayout = () => (
-  <div style={{ textAlign: "center", marginTop: "4rem" }}>
-    <h1 className="text-3xl font-bold text-green-600">
-      Connection established with backend
-    </h1>
-  </div>
-);
-
-export const router = createBrowserRouter([
+const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    children: [
+      { index: true, element: <Home /> },
+    ],
+  },
+  {
+    path: "*",
+    element: (
+      <h2 className="text-center text-3xl mt-20 text-error">
+        404 - Page Not Found
+      </h2>
+    ),
   },
 ]);
+
+export default router;
