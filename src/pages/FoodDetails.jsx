@@ -1,11 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router";
 import Loader from "../components/Loader";
+import { AuthContext } from "../auth/AuthProvider";
+import RequestModal from "../components/RequestModal";
 
 const FoodDetails = () => {
   const { id } = useParams();
+  const { user } = useContext(AuthContext);
   const [food, setFood] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     const fetchFood = async () => {
@@ -41,6 +45,8 @@ const FoodDetails = () => {
     donator_image,
     food_status,
   } = food;
+
+  const isOwner = user?.email === donator_email;
 
   return (
     <section className="py-12 max-w-4xl mx-auto">
@@ -80,11 +86,24 @@ const FoodDetails = () => {
             </div>
           </div>
 
-          <div className="card-actions justify-end mt-6">
-            <button className="btn btn-primary">Request Food</button>
-          </div>
+          {/* Only show request button for non-owners */}
+          {!isOwner && food_status === "available" && user && (
+            <div className="card-actions justify-end mt-6">
+              <button
+                onClick={() => setShowModal(true)}
+                className="btn btn-primary"
+              >
+                Request Food
+              </button>
+            </div>
+          )}
         </div>
       </div>
+
+      {/* Modal */}
+      {showModal && (
+        <RequestModal food={food} onClose={() => setShowModal(false)} />
+      )}
     </section>
   );
 };
