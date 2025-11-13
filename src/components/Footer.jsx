@@ -1,5 +1,6 @@
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import { Link } from "react-router";
 
 const Footer = () => {
   return (
@@ -8,7 +9,12 @@ const Footer = () => {
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between px-6 py-6">
         {/* Left: Logo & Name */}
         <div className="flex items-center gap-2 mb-4 md:mb-0">
-          <span className="text-2xl font-bold text-accent">PlateShare</span>
+          <Link
+            to="/"
+            className="text-2xl font-bold text-accent hover:text-primary transition-colors"
+          >
+            PlateShare
+          </Link>
         </div>
 
         {/* Right: Social Media Icons */}
