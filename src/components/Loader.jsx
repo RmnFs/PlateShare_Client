@@ -1,9 +1,7 @@
-import React from "react";
-
-const Loader = () => {
-  return (
-    <div>This is the Loader component</div>
-  );
-};
+const Loader = () => (
+  <div className="flex justify-center items-center py-20">
+    <span className="loading loading-spinner loading-lg text-primary"></span>
+  </div>
+);
 
 export default Loader;
