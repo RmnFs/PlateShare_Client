@@ -1,4 +1,5 @@
 import FeaturedFoods from "../components/FeaturedFoods";
+import StaticSections from "../components/StaticSections";
 
 const Home = () => {
   return (
@@ -14,6 +15,7 @@ const Home = () => {
       </section>
 
       <FeaturedFoods />
+      <StaticSections />
     </>
   );
 };
