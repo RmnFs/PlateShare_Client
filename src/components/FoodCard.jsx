@@ -1,5 +1,8 @@
+import { Link } from "react-router";
+
 const FoodCard = ({ food }) => {
   const {
+    _id,
     food_image,
     food_name,
     food_quantity,
@@ -36,7 +39,9 @@ const FoodCard = ({ food }) => {
         </div>
 
         <div className="card-actions justify-end mt-4">
-          <button className="btn btn-sm btn-primary">View Details</button>
+          <Link to={`/food/${_id}`} className="btn btn-sm btn-primary">
+            View Details
+          </Link>
         </div>
       </div>
     </div>
