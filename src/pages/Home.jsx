@@ -4,7 +4,11 @@ import StaticSections from "../components/StaticSections";
 const Home = () => {
   return (
     <>
-      <section className="text-center py-20">
+      {/* Banner / Hero */}
+      <section
+        className="text-center py-20"
+        data-aos="fade-up"
+      >
         <h1 className="text-4xl font-bold mb-4 text-primary">
           Welcome to PlateShare 🍽️
         </h1>
@@ -14,8 +18,15 @@ const Home = () => {
         <button className="btn btn-primary mt-8">View Available Foods</button>
       </section>
 
-      <FeaturedFoods />
-      <StaticSections />
+      {/* Featured Foods */}
+      <div data-aos="fade-up">
+        <FeaturedFoods />
+      </div>
+
+      {/* Static Info Sections */}
+      <div data-aos="fade-up">
+        <StaticSections />
+      </div>
     </>
   );
 };

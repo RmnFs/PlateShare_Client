@@ -5,6 +5,10 @@ import { RouterProvider } from "react-router";
 import router from "./routes/router";
 import AuthProvider from "./auth/AuthProvider";
 import { Toaster } from "react-hot-toast";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
+AOS.init({ duration: 800, easing: "ease-in-out", once: true });
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
