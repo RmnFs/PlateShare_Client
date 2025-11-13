@@ -15,6 +15,7 @@ const Navbar = () => {
           <li><Link to="/">Home</Link></li>
           <li><Link to="/available-foods">Available Foods</Link></li>
           <li><Link to="/login">Login</Link></li>
+         <li><Link to="/register">Register</Link></li>
         </ul>
         {user && (
           <div className="flex items-center gap-2">
