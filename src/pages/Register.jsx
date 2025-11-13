@@ -4,7 +4,8 @@ import { useNavigate, Link } from "react-router";
 import { toast } from "react-hot-toast";
 
 const Register = () => {
-  const { registerUser, updateUserProfile } = useContext(AuthContext);
+  const { registerUser, updateUserProfile, googleLogin } =
+    useContext(AuthContext);
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
@@ -40,39 +41,83 @@ const Register = () => {
     }
   };
 
+  const handleGoogleRegister = async () => {
+    try {
+      await googleLogin();
+      toast.success("Registered via Google!");
+      navigate("/");
+    } catch (err) {
+      console.error(err);
+      toast.error("Google registration failed.");
+    }
+  };
+
   return (
     <div className="flex justify-center items-center min-h-[70vh]">
-      <form
-        onSubmit={handleRegister}
-        className="card w-full max-w-sm bg-base-100 shadow-md p-8"
-      >
-        <h2 className="text-2xl font-semibold mb-4 text-center">
+      <div className="card w-full max-w-sm bg-base-100 shadow-md p-8">
+        <h2 className="text-2xl font-semibold mb-4 text-center text-primary">
           Register for PlateShare
         </h2>
 
-        <label className="form-control w-full mb-3">
-          <span className="label-text font-medium">Name</span>
-          <input type="text" name="name" placeholder="Your Name" className="input input-bordered" required />
-        </label>
+        <form onSubmit={handleRegister}>
+          <label className="form-control w-full mb-3">
+            <span className="label-text font-medium">Name</span>
+            <input
+              type="text"
+              name="name"
+              placeholder="Your Name"
+              className="input input-bordered"
+              required
+            />
+          </label>
 
-        <label className="form-control w-full mb-3">
-          <span className="label-text font-medium">Photo URL</span>
-          <input type="text" name="photo" placeholder="Profile Picture URL" className="input input-bordered" required />
-        </label>
+          <label className="form-control w-full mb-3">
+            <span className="label-text font-medium">Photo URL</span>
+            <input
+              type="text"
+              name="photo"
+              placeholder="Profile Picture URL"
+              className="input input-bordered"
+              required
+            />
+          </label>
 
-        <label className="form-control w-full mb-3">
-          <span className="label-text font-medium">Email</span>
-          <input type="email" name="email" placeholder="Email Address" className="input input-bordered" required />
-        </label>
+          <label className="form-control w-full mb-3">
+            <span className="label-text font-medium">Email</span>
+            <input
+              type="email"
+              name="email"
+              placeholder="Email Address"
+              className="input input-bordered"
+              required
+            />
+          </label>
 
-        <label className="form-control w-full mb-3">
-          <span className="label-text font-medium">Password</span>
-          <input type="password" name="password" placeholder="*******" className="input input-bordered" required />
-        </label>
+          <label className="form-control w-full mb-3">
+            <span className="label-text font-medium">Password</span>
+            <input
+              type="password"
+              name="password"
+              placeholder="*******"
+              className="input input-bordered"
+              required
+            />
+          </label>
 
-        {error && <p className="text-error text-sm mb-3">{error}</p>}
+          {error && <p className="text-error text-sm mb-3">{error}</p>}
 
-        <button type="submit" className="btn btn-primary w-full">Register</button>
+          <button type="submit" className="btn btn-primary w-full">
+            Register
+          </button>
+        </form>
+
+        <button
+          type="button"
+          onClick={handleGoogleRegister}
+          className="btn btn-outline mt-4 w-full"
+        >
+          Register with Google
+        </button>
 
         <p className="text-center mt-3 text-sm">
           Already have an account?{" "}
@@ -80,7 +125,7 @@ const Register = () => {
             Login
           </Link>
         </p>
-      </form>
+      </div>
     </div>
   );
 };
